@@ -10,7 +10,7 @@ function authenticateToken( req , res, next){
 
         const [bearer , token ] = authHeader.split(' ');
         if(bearer !== "Bearer" || !token ){
-            return res.json(401).json({ message: "Unauthorized: invalid token format" });
+            return res.status(401).json({ message: "Unauthorized: invalid token format" });
         }
 
         jwt.verify( token , process.env.SECRET_KEY , (err, user)=>{
